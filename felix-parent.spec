@@ -4,7 +4,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        1.2.1
-Release:        15.11%{?dist}
+Release:        15.12%{?dist}
 Summary:        Parent POM file for Apache Felix Specs
 
 License:        ASL 2.0
@@ -21,42 +21,42 @@ BuildRequires: %{?scl_prefix_java_common}javapackages-tools
 BuildRequires: %{?scl_prefix_java_common}junit
 BuildRequires: %{?scl_prefix_java_common}maven-local
 BuildRequires: %{?scl_prefix_java_common}easymock2
-BuildRequires: maven30-maven-plugin-plugin
-BuildRequires: maven30-maven-compiler-plugin
-BuildRequires: maven30-maven-install-plugin
-BuildRequires: maven30-maven-jar-plugin
-BuildRequires: maven30-maven-javadoc-plugin
-BuildRequires: maven30-maven-resources-plugin
-BuildRequires: maven30-maven-assembly-plugin
-BuildRequires: maven30-maven-source-plugin
-BuildRequires: maven30-maven-deploy-plugin
-BuildRequires: maven30-maven-gpg-plugin
-BuildRequires: maven30-maven-project-info-reports-plugin
-BuildRequires: maven30-maven-release-plugin
-BuildRequires: maven30-maven-surefire-plugin
-BuildRequires: maven30-maven-surefire-report-plugin
-BuildRequires: maven30-maven-plugin-build-helper
-BuildRequires: maven30-maven-plugin-jxr
+BuildRequires: %{?scl_prefix}maven-plugin-plugin
+BuildRequires: %{?scl_prefix}maven-compiler-plugin
+BuildRequires: %{?scl_prefix}maven-install-plugin
+BuildRequires: %{?scl_prefix}maven-jar-plugin
+BuildRequires: %{?scl_prefix}maven-javadoc-plugin
+BuildRequires: %{?scl_prefix}maven-resources-plugin
+BuildRequires: %{?scl_prefix}maven-assembly-plugin
+BuildRequires: %{?scl_prefix}maven-source-plugin
+BuildRequires: %{?scl_prefix}maven-deploy-plugin
+BuildRequires: %{?scl_prefix}maven-gpg-plugin
+BuildRequires: %{?scl_prefix}maven-project-info-reports-plugin
+BuildRequires: %{?scl_prefix}maven-release-plugin
+BuildRequires: %{?scl_prefix}maven-surefire-plugin
+BuildRequires: %{?scl_prefix}maven-surefire-report-plugin
+BuildRequires: %{?scl_prefix}maven-plugin-build-helper
+BuildRequires: %{?scl_prefix}maven-plugin-jxr
 
 Requires: %{?scl_prefix_java_common}junit
 Requires: %{?scl_prefix_java_common}easymock2
-Requires: maven30-maven
-Requires: maven30-maven-plugin-plugin
-Requires: maven30-maven-compiler-plugin
-Requires: maven30-maven-install-plugin
-Requires: maven30-maven-jar-plugin
-Requires: maven30-maven-javadoc-plugin
-Requires: maven30-maven-resources-plugin
-Requires: maven30-maven-assembly-plugin
-Requires: maven30-maven-source-plugin
-Requires: maven30-maven-deploy-plugin
-Requires: maven30-maven-gpg-plugin
-Requires: maven30-maven-project-info-reports-plugin
-Requires: maven30-maven-release-plugin
-Requires: maven30-maven-surefire-plugin
-Requires: maven30-maven-surefire-report-plugin
-Requires: maven30-maven-plugin-build-helper
-Requires: maven30-maven-plugin-jxr
+Requires: %{?scl_prefix}maven
+Requires: %{?scl_prefix}maven-plugin-plugin
+Requires: %{?scl_prefix}maven-compiler-plugin
+Requires: %{?scl_prefix}maven-install-plugin
+Requires: %{?scl_prefix}maven-jar-plugin
+Requires: %{?scl_prefix}maven-javadoc-plugin
+Requires: %{?scl_prefix}maven-resources-plugin
+Requires: %{?scl_prefix}maven-assembly-plugin
+Requires: %{?scl_prefix}maven-source-plugin
+Requires: %{?scl_prefix}maven-deploy-plugin
+Requires: %{?scl_prefix}maven-gpg-plugin
+Requires: %{?scl_prefix}maven-project-info-reports-plugin
+Requires: %{?scl_prefix}maven-release-plugin
+Requires: %{?scl_prefix}maven-surefire-plugin
+Requires: %{?scl_prefix}maven-surefire-report-plugin
+Requires: %{?scl_prefix}maven-plugin-build-helper
+Requires: %{?scl_prefix}maven-plugin-jxr
 
 
 %description
@@ -64,7 +64,7 @@ Parent POM file for Apache Felix Specs.
 
 %prep
 %setup -q -n %{pkg_name}-%{version}
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %patch0 -p0 -b .sav
 %pom_remove_plugin org.apache.maven.plugins:maven-site-plugin
@@ -75,13 +75,13 @@ set -e -x
 %{?scl:EOF}
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_build
 %{?scl:EOF}
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_install
 %{?scl:EOF}
@@ -92,6 +92,9 @@ set -e -x
 
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.2.1-15.12
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 1.2.1-15.11
 - maven33 rebuild
 
